@@ -1,0 +1,36 @@
+
+app:
+  db:
+    master:
+      url: ${MASTER_DATABASE_URL:}
+      pool:
+        initial-size: ${MASTER_INIT_POOL_SIZE:${DEFAULT_POOL_INIT_SIZE:5}}
+        max-size: ${MASTER_MAX_POOL_SIZE:${DEFAULT_POOL_MAX_SIZE:20}}
+    tenant:
+      url: ${TENANT_DATABASE_URL:}
+      pool:
+        initial-size: ${TENANT_INIT_POOL_SIZE:${DEFAULT_POOL_INIT_SIZE:5}}
+        max-size: ${TENANT_MAX_POOL_SIZE:${DEFAULT_POOL_MAX_SIZE:20}}
+  liquibase:
+    master:
+      url: ${MASTER_DATABASE_MIGRATION_URL}
+      user: ${MASTER_DATABASE_USER}
+      password: ${MASTER_DATABASE_PASSWORD}
+    tenant:
+      url: ${TENANT_DATABASE_MIGRATION_URL}
+      user: ${TENANT_DATABASE_USER}
+      password: ${TENANT_DATABASE_PASSWORD}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    use-root-path: true
+
+logging:
+  level:
+    root: INFO
+
+server:
+  http2:
+    enabled: true

@@ -1,0 +1,33 @@
+server:
+  port: 8099
+
+app:
+  db:
+    master:
+      url: postgres://master_pet:another_password@localhost:5432/master_pet_project
+      require-ssl: false
+    tenant:
+      url: postgres://tenant_pet:my_password@localhost:5432/tenant_pet_project
+      require-ssl: false
+  liquibase:
+    master:
+      url: jdbc:postgresql://localhost:5432/master_pet_project
+      user: master_pet
+      password: another_password
+    tenant:
+      url: jdbc:postgresql://localhost:5432/tenant_pet_project
+      user: tenant_pet
+      password: my_password
+
+spring:
+  r2dbc:
+    pool:
+      enabled: true
+      initial-size: 10
+      max-size: 50
+
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG
+    root: INFO

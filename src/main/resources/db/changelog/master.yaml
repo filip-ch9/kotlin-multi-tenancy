@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTablesAndPopulate
+      author: filip
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            endDelimiter: \n/\s*\n|\n/\s*$
+            path: scripts/01-create-tables-and-populate.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
